@@ -81,10 +81,12 @@ function createMap(earthquakes) {
 
    // Generate legend content
    depthRanges.forEach((item) => {
-     div.innerHTML +=
-       `<i style="background: ${item.color}; width: 18px; height: 18px; display: inline-block; margin-right: 8px;"></i>` +
-       `${item.range}<br>`;
-   });
+    div.innerHTML +=
+      `<div style="display: flex; align-items: center; margin-bottom: 4px;">
+      <i style="background: ${item.color}; width: 16px; height: 16px; display: inline-block; margin-right: 6px;"></i>` +
+     `<span>${item.range}</span>`
+ 
+  });
 
    return div;
  };
