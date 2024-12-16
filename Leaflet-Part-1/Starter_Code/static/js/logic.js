@@ -59,4 +59,38 @@ function createMap(earthquakes) {
     layers: [street, earthquakes] // Add base layer(street) and earthquakes layer on load 
   
     })
+    // Add legend to the map
+ let legend = L.control({ position: "bottomright" });
+
+ legend.onAdd = function () {
+   let div = L.DomUtil.create("div", "info legend");
+   div.style.backgroundColor = "#ffffff";
+   div.style.padding = "10px";
+   div.style.borderRadius = "5px";
+   
+
+   // Define the depth ranges and corresponding colors
+   let depthRanges = [
+     { range: "-10 to 10", color: "#79ff2f" },
+     { range: "10 to 30", color: "#e1ff2f" },
+     { range: "30 to 50", color: "#ffc762" },
+     { range: "50 to 70", color: "#ffb52f" },
+     { range: "70 to 90", color: "#ff6349" },
+     { range: "90+", color: "#ff3716" }
+   ];
+
+   // Generate legend content
+   depthRanges.forEach((item) => {
+     div.innerHTML +=
+       `<i style="background: ${item.color}; width: 18px; height: 18px; display: inline-block; margin-right: 8px;"></i>` +
+       `${item.range}<br>`;
+   });
+
+   return div;
+ };
+
+ // Add the legend to the map
+ legend.addTo(myMap);
+    
+
 }
